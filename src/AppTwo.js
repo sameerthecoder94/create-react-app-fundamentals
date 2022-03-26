@@ -1,6 +1,6 @@
 import React from 'react';
 
-const App = () => {
+const AppTwo = () => {
   const stories = [
     {
       title: 'React',
@@ -56,4 +56,4 @@ const List = (props) =>
     </div>
   ));
 
-export default App;
+export default AppTwo;
