@@ -3,10 +3,12 @@ import List from './components/List';
 import { stories } from './components/storiesData';
 
 const App = () => {
-  const [state, setState] = useState('');
+  const [state, setState] = useState(
+    localStorage.getItem('myCat') || 'React'
+  );
 
   useEffect(() => {
-    localStorage.setItem('myCat', 'Hello I am from localstorage');
+    localStorage.setItem('myCat', state);
   });
 
   const handleChange = (e) => {
