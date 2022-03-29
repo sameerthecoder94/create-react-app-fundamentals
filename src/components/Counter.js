@@ -1,22 +1,7 @@
-import { useReducer } from 'react';
-import { countReducer } from '../reducer/reducer';
+import { CountContext } from '../context/context';
+import { useContext } from 'react';
 
-export function Counter({ initialCount = 2, step = 2 }) {
-  const [state, dispatch] = useReducer(countReducer, {
-    count: initialCount,
-  });
-
-  const { count } = state;
-
-  console.log(state);
-
-  const increment = () => {
-    dispatch({ type: 'increment' });
-  };
-
-  return (
-    <>
-      <button onClick={increment}>{count}</button>
-    </>
-  );
+export function Counter() {
+  const { newCount } = useContext(CountContext);
+  return <button>{newCount}</button>;
 }
