@@ -1,35 +1,38 @@
-import { useState, useEffect } from 'react';
-import List from './components/List';
-import { stories } from './components/storiesData';
+// useReducer: simple Counter
 
-const App = () => {
-  const [state, setState] = useState(
-    localStorage.getItem('myCat') || 'React'
+import React from 'react';
+
+function countReducer(state, action) {
+  console.log('I am from reducer function');
+  console.log(state);
+  console.log(action);
+
+  return { ...state, ...action };
+}
+
+function Counter({ initialCount = 0, step = 2 }) {
+  console.log('I am from Counter component');
+
+  const [{ count, newCount }, setState] = React.useReducer(
+    countReducer,
+    {
+      count: initialCount,
+      newCount: 500,
+    }
   );
 
-  useEffect(() => {
-    localStorage.setItem('myCat', state);
-  });
-
-  const handleChange = (e) => {
-    setState(e.target.value);
-  };
-
-  const handleClick = () => {
-    setState('hello');
-  };
+  const increment = () => setState({ count: count + step });
 
   return (
-    <div>
-      <h1>Searching...</h1>
-      <label htmlFor='search'>Search: </label>
-      <input type='text' id='search' onChange={handleChange} />
-      <button onClick={handleClick}>Click Me</button>
-      <h2>Searching for: {state.a}</h2>
-      <hr />
-      <List stories={stories}>hello</List>
-    </div>
+    <button onClick={increment}>
+      {count} - {newCount}
+    </button>
   );
-};
+}
+
+function App() {
+  console.log('I am from App component');
+  return <Counter />;
+}
 
 export default App;
