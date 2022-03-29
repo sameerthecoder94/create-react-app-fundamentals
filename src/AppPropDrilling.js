@@ -24,7 +24,7 @@ const SinglePerson = ({ people, removePerson }) => {
   );
 };
 
-const App = () => {
+const AppPropDrilling = () => {
   const [people, setpeople] = useState(data);
 
   const removePerson = (id) => {
@@ -43,4 +43,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default AppPropDrilling;
